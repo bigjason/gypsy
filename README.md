@@ -35,10 +35,12 @@ end
 Then create the data for it by creating a matching file in `app/data/posts.rb`:
 
 ``` ruby
-record do
+record :post do
   title "A blog post."
   body "Here is a body of a post."
-  tags [:ruby, :activerecord]
+  tags_collection do
+
+  end
 end
 ```
 
