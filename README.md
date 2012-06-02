@@ -1,6 +1,6 @@
 # Gypsy
 
-A simple model loader for data that has no need to be in a database.
+A simple loader for data that has no need to be in a database.
 
 ## Installation
 
@@ -18,32 +18,18 @@ Or install it yourself as:
 
 ## Usage
 
-*Planned*
-
 ### With Rails
 
-Add to your Gemfile. Create your simple models. For example in `app/models/posts.rb`:
+By default Gypsy works by convention.  Everyfile in `/app/data` will be loaded
+into a model with the same name as the file.  So `posts.json` will load model
+`Post`.  Simple.
 
-``` ruby
-class Post < Gypsy::Base
-  attribute :title
-  attribute :body
-  attribute :tags
-end
+All data is made available as enumerables on the model they loaded from as the
+class method `rows`.  This makes accessing the data very easy:
+
+```ruby
+Posts.rows.find{|p| p.is_published}
 ```
-
-Then create the data for it by creating a matching file in `app/data/posts.rb`:
-
-``` ruby
-record :post do
-  title "A blog post."
-  body "Here is a body of a post."
-  tags_collection do
-
-  end
-end
-```
-
 ## Contributing
 
 1. Fork it
